@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +15,6 @@
             margin: 0;
             padding: 0;
         }
-
         :root {
             --ink: #1a1612;
             --ink-muted: #5a5248;
@@ -30,7 +28,6 @@
             --gold: #b8882a;
             --gold-light: #f5edda;
         }
-
         body {
             font-family: 'Source Serif 4', Georgia, serif;
             background: var(--cream);
@@ -39,7 +36,6 @@
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
         }
-
         .masthead {
             background: var(--ink);
             color: var(--cream);
@@ -48,7 +44,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .masthead::before {
             content: '';
             position: absolute;
@@ -58,7 +53,6 @@
             height: 4px;
             background: linear-gradient(90deg, var(--accent-mid), var(--gold), var(--accent-mid));
         }
-
         .masthead-label {
             font-family: 'Source Serif 4', serif;
             font-size: 11px;
@@ -68,7 +62,6 @@
             color: var(--gold);
             margin-bottom: 1.25rem;
         }
-
         .masthead h1 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 5vw, 3.2rem);
@@ -78,7 +71,6 @@
             max-width: 780px;
             margin: 0 auto 1.25rem;
         }
-
         .masthead-sub {
             font-size: 16px;
             font-weight: 300;
@@ -86,7 +78,6 @@
             font-style: italic;
             margin-bottom: 2rem;
         }
-
         .byline-row {
             display: flex;
             gap: 2rem;
@@ -99,17 +90,14 @@
             padding-top: 1.25rem;
             font-weight: 300;
         }
-
         .byline-row span {
             color: rgba(255, 255, 255, 0.8);
         }
-
         .wrapper {
             max-width: 740px;
             margin: 0 auto;
             padding: 0 2rem 6rem;
         }
-
         .lede {
             font-size: 20px;
             font-weight: 300;
@@ -120,7 +108,6 @@
             margin: 3rem 0 2.5rem;
             line-height: 1.7;
         }
-
         h2 {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
@@ -130,13 +117,11 @@
             padding-bottom: 0.5rem;
             border-bottom: 0.5px solid var(--rule);
         }
-
         p {
             margin-bottom: 1.25rem;
             color: var(--ink);
             font-weight: 300;
         }
-
         .section-divider {
             display: flex;
             align-items: center;
@@ -147,7 +132,6 @@
             letter-spacing: 0.1em;
             text-transform: uppercase;
         }
-
         .section-divider::before,
         .section-divider::after {
             content: '';
@@ -155,7 +139,6 @@
             height: 0.5px;
             background: var(--rule);
         }
-
         .callout {
             background: var(--accent-light);
             border-left: 3px solid var(--accent);
@@ -163,13 +146,11 @@
             margin: 2rem 0;
             border-radius: 0 4px 4px 0;
         }
-
         .callout p {
             margin: 0;
             font-size: 16px;
             color: var(--accent);
         }
-
         .callout strong {
             font-weight: 600;
             color: var(--accent);
@@ -180,27 +161,33 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-
+        .callout.gold {
+            background: var(--gold-light);
+            border-left-color: var(--gold);
+        }
+        .callout.gold p {
+            color: var(--ink-muted);
+        }
+        .callout.gold strong {
+            color: var(--gold);
+        }
         .challenge-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
             margin: 1.75rem 0;
         }
-
         @media (max-width: 560px) {
             .challenge-grid {
                 grid-template-columns: 1fr;
             }
         }
-
         .challenge-card {
             background: var(--warm-white);
             border: 0.5px solid var(--rule);
             border-radius: 6px;
             padding: 1.1rem 1.25rem;
         }
-
         .challenge-card .num {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -209,7 +196,6 @@
             margin-bottom: 0.4rem;
             font-weight: 600;
         }
-
         .challenge-card h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1rem;
@@ -217,7 +203,6 @@
             color: var(--ink);
             margin-bottom: 0.5rem;
         }
-
         .challenge-card p {
             font-size: 14px;
             color: var(--ink-muted);
@@ -225,7 +210,6 @@
             margin: 0;
             font-weight: 300;
         }
-
         .pullquote {
             margin: 2.5rem 0;
             padding: 2rem;
@@ -234,7 +218,6 @@
             border-top: 1px solid var(--gold);
             border-bottom: 1px solid var(--gold);
         }
-
         .pullquote p {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
@@ -244,7 +227,6 @@
             margin: 0 0 0.75rem;
             font-weight: 400;
         }
-
         .pullquote cite {
             font-size: 13px;
             color: var(--ink-muted);
@@ -253,7 +235,6 @@
             text-transform: uppercase;
             font-weight: 300;
         }
-
         .person-badge {
             display: inline-flex;
             align-items: center;
@@ -267,7 +248,6 @@
             margin: 0.2rem;
             vertical-align: middle;
         }
-
         .person-badge .avatar {
             width: 26px;
             height: 26px;
@@ -281,14 +261,54 @@
             justify-content: center;
             font-family: 'Playfair Display', serif;
         }
-
         .people-row {
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
             margin: 1.25rem 0 1.5rem;
         }
-
+        .timeline {
+            margin: 2rem 0;
+            border-left: 2px solid var(--rule);
+            padding-left: 1.75rem;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.25rem;
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--cream);
+            border: 2px solid var(--accent-mid);
+        }
+        .timeline-item .week-label {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--ink-faint);
+            font-weight: 300;
+            margin-bottom: 0.2rem;
+        }
+        .timeline-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.35rem;
+        }
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--ink-muted);
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 300;
+        }
         .conclusion-box {
             background: var(--ink);
             color: var(--cream);
@@ -296,26 +316,22 @@
             border-radius: 8px;
             margin: 3rem 0;
         }
-
         .conclusion-box h2 {
             font-family: 'Playfair Display', serif;
             color: #fff;
             border-bottom-color: rgba(255, 255, 255, 0.15);
             margin-top: 0;
         }
-
         .conclusion-box p {
             color: rgba(255, 255, 255, 0.75);
             font-size: 16px;
             font-weight: 300;
         }
-
         .conclusion-box ul {
             list-style: none;
             padding: 0;
             margin: 1.25rem 0;
         }
-
         .conclusion-box ul li {
             padding: 0.5rem 0 0.5rem 1.25rem;
             position: relative;
@@ -324,21 +340,18 @@
             border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
             font-weight: 300;
         }
-
         .conclusion-box ul li::before {
             content: '→';
             position: absolute;
             left: 0;
             color: var(--gold);
         }
-
         .tag-row {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin: 2rem 0 0;
         }
-
         .tag {
             font-size: 12px;
             letter-spacing: 0.06em;
@@ -349,23 +362,18 @@
             color: var(--ink-muted);
             font-weight: 300;
         }
-
         strong {
             font-weight: 600;
         }
-
         em {
             font-style: italic;
         }
-
         a {
             color: var(--accent);
         }
     </style>
 </head>
-
 <body>
-
     <header class="masthead">
         <p class="masthead-label">LibLab Fellows — Project Reflection</p>
         <h1>Building a Virtual Exhibition: Lessons from the Field</h1>
@@ -376,28 +384,26 @@
             College LibLab
         </div>
     </header>
-
     <div class="wrapper">
-
         <p class="lede">When we set out to digitize the <em>150 Years of International Students @ Swarthmore</em>
             exhibit, we believed we could unlock something genuinely new — an immersive, globally
             accessible archive that anyone could walk through, wherever they were in the world. What followed was a
             semester of honest reckoning with the limits of today's tools.</p>
 
         <h2>How it started</h2>
-
         <p>The project began as a solo project offered to Saleh, with a clear and ambitious goal: recreate the physical
-    exhibition that had been on display in McCabe Library and bring it into a virtual space that could outlast
-    its four walls. The platform of choice was <strong>Spatial.io</strong>, a browser-based virtual environment
-    that allows creators to build 3D galleries viewable both on desktop and in VR headsets.</p>
-
-        <p>From the start, Saleh had been provided with a rich set of archival materials by <strong>Kathlyn Melving</strong>
-    from the International Students Office — several folders of PDF documents from the International Student Center
-    archives dating as far back as the 1980s. These formed the documentary backbone of the exhibit.</p>
-
-        <p>In mid-March, Germain joined the project to help ensure it could move quickly and land well. Together, we dove
-    into the practical work of digitization — collecting 360-degree photographs and videos of the IC building
-    using a 360-degree camera, assembling the archival documents, and beginning to construct the virtual space.</p>
+            exhibition that had been on display in McCabe Library and bring it into a virtual space that could outlast
+            its four walls. The platform of choice was <strong>Spatial.io</strong>, a browser-based virtual environment
+            that allows creators to build 3D galleries viewable both on desktop and in VR headsets.</p>
+        <p>From the start, Saleh had been provided with a rich set of archival materials by <strong>Kathryn Melvin</strong>
+            from the International Students Office — several folders of PDF documents from the International Student Center
+            archives dating as far back as the 1980s. These formed the documentary backbone of the exhibit.</p>
+        <p>Early on, Saleh began capturing 360-degree photographs and videos of the IC building with the goal of building a
+            custom 3D environment modeled on the actual space. In mid-March, Germain joined the project to help ensure it
+            could move quickly and land well. Together, we took stock of what was feasible within our timeline and made a
+            key early decision: rather than constructing a custom model of the IC from scratch, we opted to use one of
+            Spatial.io's pre-built gallery environments. It was the right call — and it let us focus our energy on the
+            content itself.</p>
 
         <div class="people-row">
             <span class="person-badge"><span class="avatar">MS</span>Muhammad Saleh Haider — Project Lead</span>
@@ -406,72 +412,127 @@
             <span class="person-badge"><span class="avatar">JM</span>Jen Moore — Academic Technologist</span>
         </div>
 
+        <div class="section-divider">How the work unfolded</div>
+
+        <h2>A semester in motion</h2>
+        <p>The project evolved through several distinct phases, shaped as much by what we discovered along the way as by
+            what we planned. Here is a condensed view of how the work actually unfolded:</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="week-label">January – February</div>
+                <h3>Platform exploration &amp; archival intake</h3>
+                <p>Saleh reviewed virtual museum precedents and got oriented on Spatial.io. He met with Kathryn Melvin
+                    to understand the exhibit's scope, layout, and curatorial intent — and began converting PDFs to images
+                    using screenshots to populate the space.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="week-label">Early March</div>
+                <h3>360° capture &amp; Germain joins</h3>
+                <p>Saleh collected 360-degree photographs and video of the IC building, initially intending to build a
+                    custom environment modeled on the space. Germain came aboard and, together, we pivoted to a pre-built
+                    Spatial.io gallery — a faster and more stable foundation.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="week-label">Late March</div>
+                <h3>Adobe workflow &amp; Artsteps experiment</h3>
+                <p>Liz flagged that our screenshot-based PDF conversion was degrading image quality. She advised using
+                    <strong>Adobe Lightroom</strong> to batch-convert entire PDFs into high-resolution images at once —
+                    a significant upgrade in both efficiency and fidelity. Around the same time, we tested
+                    <strong>Artsteps</strong> as an alternative platform, hoping it might be more stable and offer
+                    better built-in accessibility. After a week of exploration, we found it more complicated: unlike
+                    Spatial.io's pre-built environments, Artsteps' template models couldn't be meaningfully customized.
+                    We returned to Spatial.io.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="week-label">April</div>
+                <h3>Accessibility consultation &amp; documentation</h3>
+                <p>Liz connected us with accessibility specialists at UT San Antonio. We held a focused consultation,
+                    wrote documentation and workflow guides for future fellows, and worked to resolve remaining layout
+                    and labeling issues in the exhibit.</p>
+            </div>
+        </div>
+
         <div class="section-divider">The challenges</div>
-
         <h2>What we ran into</h2>
-
-        <p>We encountered significant obstacles in four distinct areas — each one narrowing what we could accomplish
-            within Spatial.io's free tier.</p>
-
+        <p>We encountered significant obstacles in five distinct areas — each one narrowing what we could accomplish
+            within our tools and timeline.</p>
         <div class="challenge-grid">
             <div class="challenge-card">
                 <div class="num">01</div>
                 <h3>360° video blocked by storage limits</h3>
-                <p>The 360-degree videos we captured of the IC building couldn't be uploaded — Spatial.io's free tier
+                <p>The 360-degree videos captured of the IC building couldn't be uploaded — Spatial.io's free tier
                     rejected them for exceeding the data limit and prompted us to upgrade to a paid plan.</p>
             </div>
             <div class="challenge-card">
                 <div class="num">02</div>
+                <h3>PDF-to-image conversion</h3>
+                <p>Spatial.io doesn't support PDF files, so all documents needed to be converted to images. We started
+                    with manual screenshots of individual pages, but Liz raised concerns about quality loss. She
+                    recommended batch-converting with Adobe Lightroom, which preserved image fidelity and dramatically
+                    reduced manual effort.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="num">03</div>
                 <h3>Multi-page documents with no slideshow</h3>
                 <p>More than 70% of the archival documents were multi-page. Since Spatial.io has no native slideshow
                     feature, we had to manually duplicate and arrange individual page images — a workaround that
                     produced inconsistent scales across the exhibit.</p>
             </div>
             <div class="challenge-card">
-                <div class="num">03</div>
+                <div class="num">04</div>
                 <h3>Platform instability</h3>
                 <p>Every edit triggered a full page reload before we could make the next change. This seemingly small
-                    friction consumed a disproportionate amount of our time and made iterative design nearly impossible.
-                </p>
+                    friction consumed a disproportionate amount of our time and made iterative design nearly impossible.</p>
             </div>
             <div class="challenge-card">
-                <div class="num">04</div>
+                <div class="num">05</div>
                 <h3>No meaningful accessibility features</h3>
-                <p>Despite exploring every available option, the only accessibility feature we could find was the
-                    ability to add image descriptions. This left visitors with visual, motor, or cognitive disabilities
-                    without meaningful access to the exhibit.</p>
+                <p>Despite exploring every available option — including a week-long test of Artsteps as an alternative —
+                    neither platform offered meaningful accessibility support. The only feature we could find in
+                    Spatial.io was the ability to add image descriptions.</p>
             </div>
         </div>
 
+        <div class="section-divider">The Artsteps detour</div>
+        <h2>Why we tried Artsteps — and came back</h2>
+        <p>Spatial.io's instability and accessibility gaps led us to seriously evaluate <strong>Artsteps</strong>, another
+            browser-based virtual gallery platform. We hoped it might be smoother to work in and possibly have
+            accessibility features that Spatial.io lacked.</p>
+        <p>After a week of exploration, we hit a fundamental wall: Artsteps' pre-built gallery templates couldn't be
+            altered in any meaningful way. Unlike Spatial.io, where a pre-built environment could still be freely
+            populated and configured, Artsteps offered very little flexibility within its templates. Building anything
+            custom would have required starting from scratch with a level of 3D modeling work that fell outside our scope.
+            We returned to Spatial.io — knowing its limitations, but now also knowing there was no clearly better
+            alternative within reach.</p>
+
+        <div class="callout gold">
+            <strong>Platform note</strong>
+            <p>Artsteps and Spatial.io both fell short in accessibility. Neither platform is a clear recommendation for
+                archival digital exhibit work that must serve diverse visitors — the field simply hasn't caught up yet.</p>
+        </div>
+
         <div class="section-divider">Accessibility</div>
-
         <h2>The hardest conversation</h2>
-
         <p>Accessibility was never a secondary concern for us. It is a core value of the LibLab fellowship — and it
             should be a core value of any digital exhibit that claims to serve a broad public. So when Spatial.io's
             accessibility features proved almost nonexistent, we didn't move on. We kept looking.</p>
-
         <p>Our Emerging Technologies Fellow, Liz Hogrefe, connected us with colleagues at <strong>UT San
                 Antonio</strong> who specialize in digital accessibility — <strong>Vanessa Garza</strong> (Learning
             Experience Accessibility Specialist) and <strong>RaLynn McGuire</strong> (Lead Accessibility/UDL Specialist,
             CPACC). The introduction came through Jen Moore, Academic Technologist for the Arts &amp; Humanities at
             Swarthmore, who recognized that an outside expert perspective would be invaluable.</p>
-
-        <p>We met on April 16th for a focused thirty-minute consultation. Their expertise was immediately clarifying.
-        </p>
-
+        <p>We met on April 16th for a focused thirty-minute consultation. Their expertise was immediately clarifying.</p>
         <div class="pullquote">
             <p>"We haven't been able to find a platform that offers both genuine accessibility features and an embedded
                 VR experience — and we've been actively looking."</p>
             <cite>RaLynn McGuire &amp; Vanessa Garza, UT San Antonio</cite>
         </div>
-
         <p>This wasn't a critique of our specific implementation choices. It was a field-wide observation: <strong>the
                 tools don't exist yet</strong>. No current VR/spatial platform meaningfully accommodates people with
             visual, motor, or cognitive disabilities within the immersive experience itself. The state of the art, for
             now, is to build a separate, fully accessible website alongside the VR experience — a companion that doesn't
             depend on the spatial environment at all.</p>
-
         <div class="callout">
             <strong>Key finding</strong>
             <p>Spatial.io, in its current form, has no features to accommodate visitors with disabilities. Making an
@@ -480,7 +541,6 @@
         </div>
 
         <div class="section-divider">Looking ahead</div>
-
         <div class="conclusion-box">
             <h2>What we'd tell the next team</h2>
             <p>We leave this project with a clearer map of the terrain. For anyone considering a similar virtual
@@ -488,12 +548,16 @@
             <ul>
                 <li>Audit your platform's data limits before collecting media at scale — especially for rich formats
                     like 360° video.</li>
+                <li>Don't rely on screenshots to convert PDFs to images — the quality loss is real. Use Adobe Lightroom
+                    or a comparable batch tool from the start.</li>
                 <li>Assume multi-page documents will be the norm in archival work and confirm your platform can handle
                     them before committing to it.</li>
                 <li>Treat accessibility as a platform selection criterion, not a post-launch add-on. Ask: what can a
                     screen reader user actually do here?</li>
                 <li>If the VR experience cannot be made accessible, budget time and resources to build a companion web
                     experience that can.</li>
+                <li>Evaluate alternatives carefully — Artsteps may look like an escape hatch, but its rigid templates
+                    can be more limiting than the platform you're trying to leave.</li>
                 <li>Spatial.io is not the right fit for virtual exhibition projects that need to be interactive, stable,
                     and accessible — at least not at the free tier.</li>
             </ul>
@@ -502,24 +566,22 @@
         </div>
 
         <h2>Gratitude</h2>
-
         <p>We are genuinely grateful to Jen Moore for her enthusiasm and her network; to RaLynn McGuire and Vanessa
-            Garza for giving their time and their expertise so generously; and to Liz Hogrefe for connecting us all and
+            Garza for giving their time and their expertise so generously; and to Liz Hogrefe for weekly check-ins,
+            feedback, the Adobe workflow recommendation that saved us countless hours, and for connecting us all and
             holding the vision of what this project could become. These conversations made our work richer, even where
             they revealed how much work remains.</p>
-
         <div class="tag-row">
             <span class="tag">Virtual Reality</span>
             <span class="tag">Accessibility</span>
             <span class="tag">Digital Exhibits</span>
             <span class="tag">Spatial.io</span>
+            <span class="tag">Artsteps</span>
             <span class="tag">LibLab 2026</span>
             <span class="tag">UDL</span>
             <span class="tag">Archival Work</span>
+            <span class="tag">Adobe Lightroom</span>
         </div>
-
     </div>
-
 </body>
-
 </html>
