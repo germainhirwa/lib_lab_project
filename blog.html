@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Virtual Exhibition: Lessons from the Field</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --ink: #1a1612;
+            --ink-muted: #5a5248;
+            --ink-faint: #9a9088;
+            --cream: #faf8f4;
+            --warm-white: #f5f2ed;
+            --rule: #d8d0c4;
+            --accent: #8b3a1e;
+            --accent-light: #f0e8e2;
+            --accent-mid: #c4693a;
+            --gold: #b8882a;
+            --gold-light: #f5edda;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--cream);
+            color: var(--ink);
+            font-size: 18px;
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .masthead {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .masthead::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-mid), var(--gold), var(--accent-mid));
+        }
+
+        .masthead-label {
+            font-family: 'Source Serif 4', serif;
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.25rem;
+        }
+
+        .masthead h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 600;
+            line-height: 1.2;
+            color: #fff;
+            max-width: 780px;
+            margin: 0 auto 1.25rem;
+        }
+
+        .masthead-sub {
+            font-size: 16px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .byline-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.25rem;
+            font-weight: 300;
+        }
+
+        .byline-row span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .wrapper {
+            max-width: 740px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+        }
+
+        .lede {
+            font-size: 20px;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--ink-muted);
+            border-left: 3px solid var(--accent-mid);
+            padding: 1.5rem 0 1.5rem 1.75rem;
+            margin: 3rem 0 2.5rem;
+            line-height: 1.7;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin: 3rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 0.5px solid var(--rule);
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--ink);
+            font-weight: 300;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 2.5rem 0;
+            color: var(--ink-faint);
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 0.5px;
+            background: var(--rule);
+        }
+
+        .callout {
+            background: var(--accent-light);
+            border-left: 3px solid var(--accent);
+            padding: 1.25rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .callout p {
+            margin: 0;
+            font-size: 16px;
+            color: var(--accent);
+        }
+
+        .callout strong {
+            font-weight: 600;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.4rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.75rem 0;
+        }
+
+        @media (max-width: 560px) {
+            .challenge-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .challenge-card {
+            background: var(--warm-white);
+            border: 0.5px solid var(--rule);
+            border-radius: 6px;
+            padding: 1.1rem 1.25rem;
+        }
+
+        .challenge-card .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--rule);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+
+        .challenge-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .challenge-card p {
+            font-size: 14px;
+            color: var(--ink-muted);
+            line-height: 1.6;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        .pullquote {
+            margin: 2.5rem 0;
+            padding: 2rem;
+            text-align: center;
+            background: var(--gold-light);
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+        }
+
+        .pullquote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--ink);
+            line-height: 1.6;
+            margin: 0 0 0.75rem;
+            font-weight: 400;
+        }
+
+        .pullquote cite {
+            font-size: 13px;
+            color: var(--ink-muted);
+            letter-spacing: 0.08em;
+            font-style: normal;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        .person-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--warm-white);
+            border: 0.5px solid var(--rule);
+            border-radius: 2rem;
+            padding: 0.35rem 0.9rem 0.35rem 0.5rem;
+            font-size: 13px;
+            color: var(--ink-muted);
+            margin: 0.2rem;
+            vertical-align: middle;
+        }
+
+        .person-badge .avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .people-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 1.25rem 0 1.5rem;
+        }
+
+        .conclusion-box {
+            background: var(--ink);
+            color: var(--cream);
+            padding: 2.5rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+
+        .conclusion-box h2 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.15);
+            margin-top: 0;
+        }
+
+        .conclusion-box p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .conclusion-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 1.25rem 0;
+        }
+
+        .conclusion-box ul li {
+            padding: 0.5rem 0 0.5rem 1.25rem;
+            position: relative;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+            font-weight: 300;
+        }
+
+        .conclusion-box ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 2rem 0 0;
+        }
+
+        .tag {
+            font-size: 12px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.75rem;
+            border: 0.5px solid var(--rule);
+            border-radius: 2rem;
+            color: var(--ink-muted);
+            font-weight: 300;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        a {
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="masthead">
+        <p class="masthead-label">LibLab Fellows — Project Reflection</p>
+        <h1>Building a Virtual Exhibition: Lessons from the Field</h1>
+        <p class="masthead-sub">What we learned attempting to make 150 years of international student history come alive
+            — and accessible — online</p>
+        <div class="byline-row">
+            By <span>Muhammad Saleh Haider &amp; Germain Hirwa</span> &nbsp;·&nbsp; Spring 2026 &nbsp;·&nbsp; Swarthmore
+            College LibLab
+        </div>
+    </header>
+
+    <div class="wrapper">
+
+        <p class="lede">When we set out to digitize the <em>150 Years of International Students @ Swarthmore</em>
+            exhibit, we believed spatial computing could unlock something genuinely new — an immersive, globally
+            accessible archive that anyone could walk through, wherever they were in the world. What followed was a
+            semester of honest reckoning with the limits of today's tools.</p>
+
+        <h2>How it started</h2>
+
+        <p>The project began as a solo initiative by Saleh, with a clear and ambitious goal: recreate the physical
+            exhibition that had been on display in McCabe Library and bring it into a virtual space that could outlast
+            its four walls. The platform of choice was <strong>Spatial.io</strong>, a browser-based virtual environment
+            that allows creators to build 3D galleries viewable both on desktop and in VR headsets.</p>
+
+        <p>Early on, Germain joined the project to help ensure it could move quickly and land well. Together, we dove
+            into the practical work of digitization — collecting 360-degree photographs and videos of the IC building
+            using a 360-degree camera, assembling archival documents, and beginning to construct the virtual space.</p>
+
+        <div class="people-row">
+            <span class="person-badge"><span class="avatar">MS</span>Muhammad Saleh Haider — Project Lead</span>
+            <span class="person-badge"><span class="avatar">GH</span>Germain Hirwa — Project Support</span>
+            <span class="person-badge"><span class="avatar">LH</span>Liz Hogrefe — Emerging Technologies Fellow</span>
+            <span class="person-badge"><span class="avatar">JM</span>Jen Moore — Academic Technologist</span>
+        </div>
+
+        <div class="section-divider">The challenges</div>
+
+        <h2>What we ran into</h2>
+
+        <p>We encountered significant obstacles in four distinct areas — each one narrowing what we could accomplish
+            within Spatial.io's free tier.</p>
+
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <div class="num">01</div>
+                <h3>360° video blocked by storage limits</h3>
+                <p>The 360-degree videos we captured of the IC building couldn't be uploaded — Spatial.io's free tier
+                    rejected them for exceeding the data limit and prompted us to upgrade to a paid plan.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="num">02</div>
+                <h3>Multi-page documents with no slideshow</h3>
+                <p>More than 70% of the archival documents were multi-page. Since Spatial.io has no native slideshow
+                    feature, we had to manually duplicate and arrange individual page images — a workaround that
+                    produced inconsistent scales across the exhibit.</p>
+            </div>
+            <div class="challenge-card">
+                <div class="num">03</div>
+                <h3>Platform instability</h3>
+                <p>Every edit triggered a full page reload before we could make the next change. This seemingly small
+                    friction consumed a disproportionate amount of our time and made iterative design nearly impossible.
+                </p>
+            </div>
+            <div class="challenge-card">
+                <div class="num">04</div>
+                <h3>No meaningful accessibility features</h3>
+                <p>Despite exploring every available option, the only accessibility feature we could find was the
+                    ability to add image descriptions. This left visitors with visual, motor, or cognitive disabilities
+                    without meaningful access to the exhibit.</p>
+            </div>
+        </div>
+
+        <div class="section-divider">Accessibility</div>
+
+        <h2>The hardest conversation</h2>
+
+        <p>Accessibility was never a secondary concern for us. It is a core value of the LibLab fellowship — and it
+            should be a core value of any digital exhibit that claims to serve a broad public. So when Spatial.io's
+            accessibility features proved almost nonexistent, we didn't move on. We kept looking.</p>
+
+        <p>Our Emerging Technologies Fellow, Liz Hogrefe, connected us with colleagues at <strong>UT San
+                Antonio</strong> who specialize in digital accessibility — <strong>Vanessa Garza</strong> (Learning
+            Experience Accessibility Specialist) and <strong>RaLynn McGuire</strong> (Lead Accessibility/UDL Specialist,
+            CPACC). The introduction came through Jen Moore, Academic Technologist for the Arts &amp; Humanities at
+            Swarthmore, who recognized that an outside expert perspective would be invaluable.</p>
+
+        <p>We met on April 16th for a focused thirty-minute consultation. Their expertise was immediately clarifying.
+        </p>
+
+        <div class="pullquote">
+            <p>"We haven't been able to find a platform that offers both genuine accessibility features and an embedded
+                VR experience — and we've been actively looking."</p>
+            <cite>RaLynn McGuire &amp; Vanessa Garza, UT San Antonio</cite>
+        </div>
+
+        <p>This wasn't a critique of our specific implementation choices. It was a field-wide observation: <strong>the
+                tools don't exist yet</strong>. No current VR/spatial platform meaningfully accommodates people with
+            visual, motor, or cognitive disabilities within the immersive experience itself. The state of the art, for
+            now, is to build a separate, fully accessible website alongside the VR experience — a companion that doesn't
+            depend on the spatial environment at all.</p>
+
+        <div class="callout">
+            <strong>Key finding</strong>
+            <p>Spatial.io, in its current form, has no features to accommodate visitors with disabilities. Making an
+                exhibit built in Spatial.io meaningfully accessible would require building an entirely separate website
+                with accessibility features baked in from the ground up.</p>
+        </div>
+
+        <div class="section-divider">Looking ahead</div>
+
+        <div class="conclusion-box">
+            <h2>What we'd tell the next team</h2>
+            <p>We leave this project with a clearer map of the terrain. For anyone considering a similar virtual
+                exhibition project, here is what we learned:</p>
+            <ul>
+                <li>Audit your platform's data limits before collecting media at scale — especially for rich formats
+                    like 360° video.</li>
+                <li>Assume multi-page documents will be the norm in archival work and confirm your platform can handle
+                    them before committing to it.</li>
+                <li>Treat accessibility as a platform selection criterion, not a post-launch add-on. Ask: what can a
+                    screen reader user actually do here?</li>
+                <li>If the VR experience cannot be made accessible, budget time and resources to build a companion web
+                    experience that can.</li>
+                <li>Spatial.io is not the right fit for virtual exhibition projects that need to be interactive, stable,
+                    and accessible — at least not at the free tier.</li>
+            </ul>
+            <p>The history we were working to preserve — 150 years of international students at Swarthmore — deserves to
+                be told to everyone. That aspiration will outlast any single platform.</p>
+        </div>
+
+        <h2>Gratitude</h2>
+
+        <p>We are genuinely grateful to Jen Moore for her enthusiasm and her network; to RaLynn McGuire and Vanessa
+            Garza for giving their time and their expertise so generously; and to Liz Hogrefe for connecting us all and
+            holding the vision of what this project could become. These conversations made our work richer, even where
+            they revealed how much work remains.</p>
+
+        <div class="tag-row">
+            <span class="tag">Virtual Reality</span>
+            <span class="tag">Accessibility</span>
+            <span class="tag">Digital Exhibits</span>
+            <span class="tag">Spatial.io</span>
+            <span class="tag">LibLab 2026</span>
+            <span class="tag">UDL</span>
+            <span class="tag">Archival Work</span>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
